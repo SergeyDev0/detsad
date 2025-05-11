@@ -1,0 +1,2364 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>МКУК "Дом культуры с. Орловка"</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+		<link rel="shortcut icon" href="./logo.png" type="image/x-icon">
+    <style>
+      :root {
+        --primary: #2a6b3e;
+        --primary-light: #3d8b55;
+        --secondary: #f8a13a;
+        --light: #f9f9f9;
+        --dark: #222;
+        --text: #444;
+        --gray: #e0e0e0;
+        --white: #fff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--light);
+        color: var(--text);
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+        position: relative;
+      }
+
+      .section-title h2 {
+        font-size: 2.2rem;
+        color: var(--primary);
+        margin-bottom: 5px;
+        position: relative;
+        display: inline-block;
+        line-height: 1.2;
+      }
+
+      .section-title p {
+        max-width: 700px;
+        margin: 0 auto;
+        color: var(--text);
+      }
+
+      .btn {
+        display: inline-block;
+        background: var(--primary-light);
+        color: white;
+        padding: 12px 30px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(61, 139, 84, 0.3);
+      }
+
+      .btn:hover {
+        background: var(--primary);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(61, 139, 84, 0.3);
+      }
+
+      .btn-outline {
+        background: transparent;
+        border: 2px solid var(--primary-light);
+        color: var(--primary-light);
+        box-shadow: none;
+      }
+
+      .btn-outline:hover {
+        background: var(--primary);
+        color: white;
+      }
+
+      /* Header */
+      header {
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 15px 0;
+        transition: all 0.3s ease;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo img {
+        height: 50px;
+        width: auto;
+      }
+
+      .logo-text p {
+        font-size: 0.7rem;
+        color: var(--text);
+        opacity: 0.8;
+      }
+
+      /* Навигация для десктопа */
+      nav.desktop-nav {
+        display: flex;
+      }
+
+      nav.desktop-nav ul {
+        display: flex;
+        list-style: none;
+        gap: 25px;
+      }
+
+      nav.desktop-nav a {
+        color: var(--dark);
+        text-decoration: none;
+        font-weight: 500;
+        position: relative;
+        transition: all 0.3s ease;
+        padding: 5px 0;
+      }
+
+      nav.desktop-nav a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-light);
+        transition: width 0.3s ease;
+      }
+
+      nav.desktop-nav a:hover::after {
+        width: 100%;
+      }
+
+      /* Кнопка меню для мобильных */
+      .nav-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--primary);
+        font-size: 1.5rem;
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        cursor: pointer;
+        padding: 5px;
+      }
+
+      /* Мобильное меню */
+      nav.mobile-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: white;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        padding: 80px 20px 20px;
+        transition: all 0.3s ease;
+        z-index: 1000;
+      }
+
+      nav.mobile-nav.active {
+        right: 0;
+      }
+
+      nav.mobile-nav ul {
+        list-style: none;
+      }
+
+      nav.mobile-nav li {
+        margin-bottom: 15px;
+      }
+
+      nav.mobile-nav a {
+        color: var(--dark);
+        text-decoration: none;
+        font-weight: 500;
+        display: block;
+        padding: 10px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+      }
+
+      nav.mobile-nav a:hover {
+        background: var(--light);
+        color: var(--primary);
+      }
+
+      .close-nav {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        color: var(--primary);
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* Hero section */
+      .hero {
+        height: calc(100vh - 80px);
+        min-height: 500px;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)),
+          url("./n3.jpg")
+            no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        color: white;
+        position: relative;
+        text-align: center;
+      }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        z-index: 1;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        opacity: 0.9;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-btns {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero-btns .btn {
+        padding: 15px 35px;
+        font-size: 1.1rem;
+      }
+
+      .hero-btns .btn-outline {
+        background: transparent;
+        border: 2px solid white;
+        color: white;
+      }
+
+      .hero-btns .btn-outline:hover {
+        background: white;
+        color: var(--primary);
+      }
+
+      .hero-scroll {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        color: white;
+        animation: bounce 2s infinite;
+				font-size: 32px;
+      }
+
+      /* About - обновленный дизайн */
+      .about {
+        background-color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .about::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80")
+          no-repeat center center/cover;
+        opacity: 0.03;
+        z-index: 0;
+      }
+
+      .about-content {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+      }
+
+      .about-text {
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-text h3 {
+        font-size: 1.8rem;
+        color: var(--primary);
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .about-text h3::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: var(--primary-light);
+      }
+
+      .about-text p {
+        margin-bottom: 20px;
+      }
+
+      .about-features {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .feature-item {
+        display: flex;
+        gap: 15px;
+        background: rgba(42, 107, 62, 0.05);
+        padding: 15px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .feature-item:hover {
+        background: rgba(42, 107, 62, 0.1);
+        transform: translateY(-3px);
+      }
+
+      .feature-icon {
+        width: 50px;
+        height: 50px;
+        background: var(--primary-light);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+
+      .feature-text h4 {
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+        color: var(--dark);
+      }
+
+      .about-image {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        height: 500px;
+      }
+
+      .about-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .about-image:hover img {
+        transform: scale(1.05);
+      }
+
+      /* Расписание работы - новый блок */
+      .schedule {
+        background: var(--primary-light);
+        color: white;
+        padding: 40px;
+        border-radius: 15px;
+        margin-top: 40px;
+      }
+
+      .schedule h4 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .schedule h4 i {
+        color: var(--primary-light);
+      }
+
+      .schedule-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .schedule-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .schedule-day {
+        font-weight: 600;
+      }
+
+      .schedule-time {
+        color: var(--primary-light);
+        font-weight: 600;
+      }
+
+      /* Achievements */
+      .achievements {
+        background-color: white;
+      }
+
+      .achievements-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+
+      .achievement-card {
+        background: var(--light);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        text-align: center;
+        padding: 30px 20px;
+      }
+
+      .achievement-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .achievement-icon {
+        width: 70px;
+        height: 70px;
+        background: var(--primary-light);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        margin: 0 auto 20px;
+      }
+
+      .achievement-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        color: var(--primary-light);
+      }
+
+      .achievement-card p {
+        font-size: 0.9rem;
+        color: var(--text);
+      }
+
+      /* Gallery */
+      .gallery {
+        background-color: var(--light);
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+      }
+
+      .gallery-item {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+        padding: 15px;
+        color: white;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+      }
+
+      /* Feedback QR */
+      .feedback {
+        background-color: white;
+      }
+
+      .feedback-content {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        background: var(--light);
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+
+      .feedback-text {
+        flex: 1;
+      }
+
+      .feedback-text h3 {
+        font-size: 1.8rem;
+        color: var(--primary);
+        margin-bottom: 20px;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        color: var(--primary-color);
+      }
+
+      .feedback-text p {
+        margin-bottom: 30px;
+      }
+
+      .qr-container {
+        flex: 0 0 250px;
+        text-align: center;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .qr-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .qr-container img {
+        width: 180px;
+        height: 180px;
+        margin-bottom: 15px;
+      }
+
+      .qr-container p {
+        font-size: 0.9rem;
+        color: var(--text);
+      }
+
+      /* Partners */
+      .partners {
+        padding: 80px 0;
+        background-color: var(--light);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .partners-container {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .partners-track {
+        display: flex;
+        width: max-content;
+      }
+
+      .partner-logo {
+        flex: 0 0 180px;
+        height: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        margin-right: 30px;
+      }
+
+      .partner-logo img {
+        max-width: 100%;
+        max-height: 100px;
+        object-fit: contain;
+        filter: grayscale(100%);
+        opacity: 0.7;
+        transition: all 0.3s ease;
+      }
+
+      .partner-logo:hover img {
+        filter: grayscale(0%);
+        opacity: 1;
+      }
+
+      .partners-track:hover {
+        animation-play-state: paused;
+      }
+
+      /* Затемнение краев для плавного перехода */
+      .partners::before,
+      .partners::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100px;
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      .partners::before {
+        left: 0;
+        background: linear-gradient(
+          to right,
+          var(--light),
+          rgba(249, 249, 249, 0)
+        );
+      }
+
+      .partners::after {
+        right: 0;
+        background: linear-gradient(
+          to left,
+          var(--light),
+          rgba(249, 249, 249, 0)
+        );
+      }
+
+      /* FAQ */
+      .faq {
+        background-color: white;
+      }
+
+      .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .faq-item {
+        margin-bottom: 15px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .faq-item:hover {
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .faq-question {
+        padding: 20px;
+        background: var(--primary);
+        color: white;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        gap: 10px;
+      }
+
+      .faq-question:hover {
+        background: var(--primary-light);
+      }
+
+      .faq-question i {
+        transition: transform 0.3s ease;
+      }
+
+      .faq-item.active .faq-question i {
+        transform: rotate(180deg);
+      }
+
+      .faq-answer {
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        background: var(--light);
+      }
+
+      .faq-item.active .faq-answer {
+        padding: 20px;
+        max-height: 500px;
+      }
+
+      /* Events */
+      .events {
+        background-color: var(--light);
+      }
+
+      .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px;
+      }
+
+      .event-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .event-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .event-image {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .event-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .event-card:hover .event-image img {
+        transform: scale(1.1);
+      }
+
+      .event-content {
+        padding: 20px;
+      }
+
+      .event-date {
+        display: inline-block;
+        background: var(--primary-light);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+
+      .event-content h3 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        color: var(--primary);
+      }
+
+      .event-content p {
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+      }
+
+      .event-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        font-size: 0.9rem;
+        color: var(--text);
+      }
+
+      /* Contact */
+      .contact {
+        background-color: white;
+      }
+
+      .contact-container {
+        display: flex;
+        gap: 50px;
+      }
+
+      .contact-info {
+        flex: 1;
+      }
+
+      .contact-info h3 {
+        font-size: 1.8rem;
+        color: var(--primary);
+        margin-bottom: 20px;
+      }
+
+      .contact-details {
+        margin-bottom: 30px;
+      }
+
+      .contact-details p {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .contact-details i {
+        color: var(--primary-light);
+        font-size: 1.2rem;
+        margin-top: 3px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+      }
+
+      .social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: white;
+        text-decoration: none;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+      }
+
+      .social-link:hover {
+        background: var(--primary-light);
+        transform: translateY(-3px);
+      }
+
+      .contact-form {
+        flex: 1;
+        background: var(--light);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--dark);
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid var(--gray);
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-color: var(--primary);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(42, 107, 62, 0.2);
+      }
+
+      .form-group textarea {
+        min-height: 150px;
+        resize: vertical;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--dark);
+        color: white;
+        padding: 60px 0 20px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .footer-column h3 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        color: var(--primary-light);
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-column h3::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background: var(--primary-light);
+      }
+
+      .footer-column ul {
+        list-style: none;
+      }
+
+      .footer-column ul li {
+        margin-bottom: 12px;
+      }
+
+      .footer-column a {
+        color: #ccc;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .footer-column a:hover {
+        color: white;
+        padding-left: 5px;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 0.9rem;
+        color: #aaa;
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 10px;
+      }
+
+      .footer-links a {
+        color: var(--primary);
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0) translateX(-50%);
+        }
+        40% {
+          transform: translateY(-20px) translateX(-50%);
+        }
+        60% {
+          transform: translateY(-10px) translateX(-50%);
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .about-content {
+					grid-template-columns: 1fr;
+        }
+
+        .achievements-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .footer-content {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-toggle {
+          display: block;
+        }
+
+        header {
+          padding: 10px 0;
+        }
+
+        .logo-text h1 {
+          font-size: 1rem;
+        }
+
+        .logo-text p {
+          display: none;
+        }
+
+        nav.desktop-nav {
+          display: none;
+        }
+
+        .nav-toggle {
+          display: block;
+        }
+
+        .hero {
+          height: calc(100vh - 70px);
+          min-height: 400px;
+        }
+
+        .hero h1 {
+          font-size: 1.8rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        nav {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 80%;
+          max-width: 300px;
+          height: 100vh;
+          background: white;
+          box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+          padding: 80px 30px 30px;
+          transition: all 0.3s ease;
+          z-index: 1000;
+        }
+
+        nav.active {
+          right: 0;
+        }
+
+        nav ul {
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        nav a {
+          color: var(--dark);
+        }
+
+        .close-nav {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          font-size: 1.5rem;
+          color: var(--primary);
+          background: none;
+          border: none;
+          cursor: pointer;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-social {
+          left: 20px;
+          bottom: 20px;
+        }
+
+        .feedback-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .contact-container {
+          flex-direction: column;
+        }
+
+        .slider-arrow {
+          display: none;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+				.contact-info h3 {
+					font-size: 1.6rem;
+					text-align: center;
+				}
+
+        .hero-btns {
+          flex-direction: column;
+        }
+
+        .section-title h2 {
+          font-size: 1.8rem;
+        }
+
+        .achievements-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .about-features {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+
+				.contact-form {
+					padding: 10px 0;
+				}
+
+				footer {
+					padding-top: 20px;
+				}
+
+				section {
+					padding: 20px 0;
+				}
+
+				.partners {
+					padding: 20px 0;
+				}
+
+				.logo > img {
+					height: 35px;
+				}
+      }
+
+			@media screen and (max-width: 400px) {
+				.contact-info h3 {
+					font-size: 1.6rem;
+				}
+			}
+
+      /* News Slider */
+      .news {
+        background-color: var(--light);
+      }
+
+      .slider-container {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .slider {
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .slider-track {
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+
+      .slide {
+        min-width: 100%;
+        position: relative;
+      }
+
+      .slide img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+      }
+
+      .slide-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        padding: 30px;
+        color: white;
+      }
+
+      .slide-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .slide-content p {
+        opacity: 0.9;
+        margin-bottom: 15px;
+      }
+
+      .slide-date {
+        display: inline-block;
+        background: var(--primary-light);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      .slider-nav {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        gap: 10px;
+      }
+
+      .slider-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--gray);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .slider-dot.active {
+        background: var(--primary);
+        transform: scale(1.2);
+      }
+
+      .slider-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+        font-size: 1.2rem;
+        cursor: pointer;
+        z-index: 10;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .slider-arrow:hover {
+        background: white;
+        color: var(--primary-light);
+      }
+
+      .slider-prev {
+        left: -25px;
+      }
+
+      .slider-next {
+        right: -25px;
+      }
+
+      @media (max-width: 768px) {
+        .slider-arrow {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header id="header">
+      <div class="container header-content">
+        <div class="logo">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="10" fill="#FFC107" stroke="#FFC107" stroke-width="2"/>
+            <g fill="#FFC107">
+              <polygon points="24,2 27,10 21,10"/>
+              <polygon points="24,46 27,38 21,38"/>
+              <polygon points="2,24 10,21 10,27"/>
+              <polygon points="46,24 38,21 38,27"/>
+              <polygon points="9,9 15,13 13,15"/>
+              <polygon points="39,9 33,13 35,15"/>
+              <polygon points="9,39 15,35 13,33"/>
+              <polygon points="39,39 33,35 35,33"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Навигация для десктопа -->
+        <nav class="desktop-nav">
+          <ul>
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#gallery">Галерея</a></li>
+            <li><a href="#feedback">Отзывы</a></li>
+            <!-- <li><a href="#events">Мероприятия</a></li> -->
+            <li><a href="#contact">Контакты</a></li>
+          </ul>
+        </nav>
+
+        <!-- Кнопка меню для мобильных -->
+        <button class="nav-toggle" id="navToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Мобильное меню -->
+        <nav class="mobile-nav" id="mobileNav">
+          <button class="close-nav" id="closeNav">
+            <i class="fas fa-times"></i>
+          </button>
+          <ul>
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#gallery">Галерея</a></li>
+            <li><a href="#feedback">Отзывы</a></li>
+            <!-- <li><a href="#events">Мероприятия</a></li> -->
+            <li><a href="#contact">Контакты</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Герой-секция -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Детский сад №5 «Аленушка»</h1>
+          <p>
+            Муниципальное казенное дошкольное образовательное учреждение
+          </p>
+          <div class="hero-btns">
+            <a href="#events" class="btn">Мероприятия</a>
+            <a href="#contact" class="btn btn-outline">Записаться в сад</a>
+          </div>
+        </div>
+        <a href="#about" class="hero-scroll">
+          <i class="fas fa-chevron-down"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="section-title">
+          <h2>О нашем учреждении</h2>
+          <p>
+            Муниципальное казенное дошкольное образовательное учреждение Красногвардейского муниципального округа с. Ладовского
+          </p>
+        </div>
+        <div class="about-content">
+          <div class="about-text">
+            <h3>Мы создаем атмосферу развития и радости</h3>
+            <p>
+              Наш детский сад - это современное образовательное учреждение, где
+              каждый ребенок получает качественное дошкольное образование и
+              гармоничное развитие. Мы создаем безопасную и комфортную среду
+              для развития детей всех возрастов.
+            </p>
+            <p>
+              Мы предлагаем разнообразные образовательные программы,
+              проводим праздники, утренники, тематические недели и другие
+              мероприятия, способствующие развитию детей.
+            </p>
+
+            <div class="about-features">
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-child"></i>
+                </div>
+                <div class="feature-text">
+                  <h4>Развитие</h4>
+                  <p>Комплексное развитие детей от 1.5 до 7 лет</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-book"></i>
+                </div>
+                <div class="feature-text">
+                  <h4>Образование</h4>
+                  <p>Образовательные программы по ФГОС</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-apple-alt"></i>
+                </div>
+                <div class="feature-text">
+                  <h4>Питание</h4>
+                  <p>Сбалансированное 5-разовое питание</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-heart"></i>
+                </div>
+                <div class="feature-text">
+                  <h4>Забота</h4>
+                  <p>Профессиональные педагоги и воспитатели</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="about-image">
+            <img
+              src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              alt="Детский сад"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- News -->
+    <!-- <section class="news" id="news">
+      <div class="container">
+        <div class="section-title">
+          <h2>Последние новости</h2>
+          <p>Будьте в курсе всех событий и мероприятий нашего Дома культуры</p>
+        </div>
+        <div class="slider-container">
+          <div class="slider-arrow slider-prev" id="sliderPrev">
+            <i class="fas fa-chevron-left"></i>
+          </div>
+          <div class="slider">
+            <div class="slider-track" id="sliderTrack">
+              <div class="slide">
+                <img
+                  src="/n1.png"
+                  alt="Новость 1"
+                />
+                <div class="slide-content">
+                  <span class="slide-date">25-04-2025</span>
+                  <h3>Автопробег «Эх, путь дорожка фронтовая»</h3>
+                  <p>
+                    «Эх, путь дорожка фронтовая» – автопробег по территории Ставрополья в рамках всероссийской акции «Знамя Победы».
+                  </p>
+                </div>
+              </div>
+              <div class="slide">
+                <img
+                  src="./n2.jpg"
+                  alt="Новость 2"
+                />
+                <div class="slide-content">
+                  <span class="slide-date">26-04-2025</span>
+                  <h3>Акция памяти, посвященная 39-й годовщине Чернобыльской катастрофы</h3>
+                  <p>
+                    Состоялась акция памяти, посвященная 39-й годовщине Чернобыльской катастрофы, ужасной трагедии, произошедшей в ночь на 26 апреля 1986 года.
+                  </p>
+                </div>
+              </div>
+              <div class="slide">
+                <img
+                  src="./i.jpg"
+                  alt="Новость 3"
+                />
+                <div class="slide-content">
+                  <span class="slide-date">25-04-2025</span>
+                  <h3>Акция «Диктант Победы»</h3>
+                  <p>
+                    На площадке Дома культуры с. Орловка прошла международная акция «Диктант Победы», посвящённая событиям Великой Отечественной войны. Участники выполняли задания по различным темам, связанным с историей войны.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slider-arrow slider-next" id="sliderNext">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+          <div class="slider-nav" id="sliderNav">
+            <div class="slider-dot active"></div>
+            <div class="slider-dot"></div>
+            <div class="slider-dot"></div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Achievements -->
+    <section class="achievements" id="achievements">
+      <div class="container">
+        <div class="section-title">
+          <h2>Наши достижения</h2>
+          <p>Мы гордимся успехами наших воспитанников и педагогов</p>
+        </div>
+        <div class="achievements-grid">
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <i class="fas fa-palette"></i>
+            </div>
+            <h3>Творческие успехи</h3>
+            <p>
+              Наши воспитанники регулярно становятся победителями и призерами 
+              различных творческих конкурсов и фестивалей
+            </p>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Безопасность</h3>
+            <p>
+              Высокие результаты в конкурсах по безопасности дорожного движения 
+              и основам безопасности жизнедеятельности
+            </p>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <h3>Экология</h3>
+            <p>
+              Активное участие и победы в экологических конкурсах и проектах, 
+              направленных на сохранение природы
+            </p>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <i class="fas fa-award"></i>
+            </div>
+            <h3>Благодарности</h3>
+            <p>
+              Многократные благодарности от администрации района за организацию
+              культурных мероприятий
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery" id="gallery">
+      <div class="container">
+        <div class="section-title">
+          <h2>Фотогалерея</h2>
+          <p>Яркие моменты из жизни нашего детского сада</p>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img
+              src="./n1.png"
+              alt="Мероприятие 1"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="./n2.jpg"
+              alt="Мероприятие 2"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="./n3.jpg"
+              alt="Мероприятие 3"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="./n4.jpg"
+              alt="Мероприятие 4"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="./n5.jpg"
+              alt="Мероприятие 5"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="./n6.webp"
+              alt="Мероприятие 6"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feedback QR -->
+    <section class="feedback" id="feedback">
+      <div class="container">
+        <div class="section-title">
+          <h2>Оставьте отзыв</h2>
+          <p>
+            Ваше мнение важно для нас и поможет улучшить качество наших услуг
+          </p>
+        </div>
+        <div class="feedback-content">
+          <div class="feedback-text">
+            <h3>Оцените работу нашего детского сада</h3>
+            <p>
+              Мы стремимся к совершенству и ценим ваши отзывы. Пожалуйста,
+              оцените качество предоставляемых услуг на официальном портале для
+              оценки учреждений культуры.
+            </p>
+            <p>
+              Ваши отзывы помогают нам становиться лучше и развивать культурную
+              жизнь нашего города.
+            </p>
+            <a href="https://2gis.ru/geo/70030076559949663/tab/reviews" class="btn" target="_blank"
+              >Оставить отзыв</a
+            >
+          </div>
+          <div class="qr-container">
+            <img
+              src="http://qrcoder.ru/code/?https%3A%2F%2F2gis.ru%2Fgeo%2F70030076559949663%2Ftab%2Freviews&4&0"
+              alt="QR код для отзыва"
+            />
+            <p>Отсканируйте QR-код для перехода на страницу отзывов</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners -->
+    <section class="partners">
+      <div class="container">
+        <div class="partners-container">
+          <div class="partners-track">
+            <!-- Первый набор логотипов -->
+						<div class="partner-logo">
+							<img src="./1.png" alt="Партнёр 1" />
+						</div>
+						<div class="partner-logo">
+							<img src="./2.png" alt="Партнёр 2" />
+						</div>
+						<div class="partner-logo">
+							<img src="./3.png" alt="Партнёр 3" />
+						</div>
+						<div class="partner-logo">
+							<img src="./gos.png" alt="Партнёр 4" />
+						</div>
+						<div class="partner-logo">
+							<img src="./80.png" alt="Партнёр 5" />
+						</div>
+						<div class="partner-logo">
+							<img src="./GMU.png" alt="Партнёр 6" />
+						</div>
+						<div class="partner-logo">
+							<img src="./1.png" alt="Партнёр 1" />
+						</div>
+						<div class="partner-logo">
+							<img src="./2.png" alt="Партнёр 2" />
+						</div>
+						<div class="partner-logo">
+							<img src="./3.png" alt="Партнёр 3" />
+						</div>
+						<div class="partner-logo">
+							<img src="./gos.png" alt="Партнёр 4" />
+						</div>
+						<div class="partner-logo">
+							<img src="./80.png" alt="Партнёр 5" />
+						</div>
+						<div class="partner-logo">
+							<img src="./GMU.png" alt="Партнёр 6" />
+						</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Events -->
+    <!-- <section class="events" id="events">
+      <div class="container">
+        <div class="section-title">
+          <h2>Ближайшие мероприятия</h2>
+          <p>Приглашаем вас на наши культурные события</p>
+        </div>
+        <div class="events-grid">
+          <div class="event-card">
+            <div class="event-image">
+              <img
+                src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                alt="Мероприятие 1"
+              />
+            </div>
+            <div class="event-content">
+              <span class="event-date">20 июня 2023</span>
+              <h3>Юбилейный концерт ансамбля "Русские узоры"</h3>
+              <p>
+                Торжественный концерт, посвященный 10-летию народного ансамбля.
+                В программе народные песни и танцы.
+              </p>
+              <div class="event-meta">
+                <span><i class="far fa-clock"></i> 18:00</span>
+                <span><i class="fas fa-map-marker-alt"></i> Большой зал</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card">
+            <div class="event-image">
+              <img
+                src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                alt="Мероприятие 2"
+              />
+            </div>
+            <div class="event-content">
+              <span class="event-date">25 июня 2023</span>
+              <h3>Мастер-класс по народным ремеслам</h3>
+              <p>
+                Уникальная возможность научиться традиционным техникам росписи
+                по дереву у мастеров своего дела.
+              </p>
+              <div class="event-meta">
+                <span><i class="far fa-clock"></i> 15:00</span>
+                <span><i class="fas fa-map-marker-alt"></i> Мастерская</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card">
+            <div class="event-image">
+              <img
+                src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                alt="Мероприятие 3"
+              />
+            </div>
+            <div class="event-content">
+              <span class="event-date">30 июня 2023</span>
+              <h3>День молодежи</h3>
+              <p>
+                Праздничная программа с конкурсами, концертом и дискотекой для
+                молодежи.
+              </p>
+              <div class="event-meta">
+                <span><i class="far fa-clock"></i> 16:00</span>
+                <span
+                  ><i class="fas fa-map-marker-alt"></i> Площадь перед ДК</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+      <div class="container">
+        <div class="section-title">
+          <h2>Часто задаваемые вопросы</h2>
+          <p>Ответы на самые популярные вопросы о нашем детском саде</p>
+        </div>
+        <div class="faq-container">
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>С какого возраста принимают детей в детский сад?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                В наш детский сад принимаются дети в возрасте от 1.5 до 7 лет. 
+                Для детей младшего возраста (1.5-3 года) у нас есть ясельные группы 
+                с адаптированной программой и специальным уходом. 
+                Запись в детский сад осуществляется через портал государственных услуг.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Какие документы нужны для зачисления в детский сад?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Для зачисления в детский сад необходимы следующие документы:
+                <br>- Заявление о приеме
+                <br>- Свидетельство о рождении ребенка
+                <br>- Паспорт родителя (законного представителя)
+                <br>- Медицинская карта ребенка (форма 026/у)
+                <br>- Справка о регистрации ребенка
+                <br>- СНИЛС ребенка
+                <br>- Полис ОМС ребенка
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Как организовано питание в детском саду?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                В нашем детском саду организовано 5-разовое питание: завтрак, 
+                второй завтрак, обед, полдник и ужин. Меню составляется с учетом 
+                возрастных особенностей детей и соответствует всем требованиям 
+                СанПиН. При наличии у ребенка пищевой аллергии или других 
+                особенностей питания, мы готовы составить индивидуальное меню 
+                по рекомендации врача.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Какие дополнительные занятия проводятся в детском саду?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                В нашем детском саду проводятся следующие дополнительные занятия и кружки:
+                <br>- Кружок по физической культуре "Солнышко"
+                <br>- Кружок "Говорушки" (развитие речи)
+                <br>- Кружок «Сударушка» (народное творчество)
+                <br>- Кружок "Правила дорожные для дошколят"
+                <br>- Театральный кружок «Волшебная маска»
+                Все занятия включены в основную образовательную программу и проводятся бесплатно. 
+                Занятия проводятся в игровой форме, что способствует лучшему усвоению материала 
+                и развитию интереса у детей.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Как проходит адаптация ребенка к детскому саду?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Адаптация проходит постепенно, с учетом индивидуальных особенностей 
+                каждого ребенка. Первые дни ребенок находится в саду 2-3 часа, 
+                постепенно время пребывания увеличивается. В этот период родители 
+                могут находиться рядом с ребенком. Наши воспитатели и психолог 
+                помогают ребенку привыкнуть к новой обстановке, найти друзей и 
+                чувствовать себя комфортно в детском саду.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Какие меры безопасности принимаются в детском саду?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                В детском саду обеспечена комплексная система безопасности:
+                <br>- Круглосуточная охрана
+                <br>- Видеонаблюдение
+                <br>- Контроль доступа
+                <br>- Пожарная сигнализация
+                <br>- Регулярные инструктажи персонала
+                <br>- Медицинский кабинет с квалифицированным персоналом
+                <br>- Ежедневный осмотр детей медицинским работником
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="section-title">
+          <h2>Контакты</h2>
+          <p>Свяжитесь с нами любым удобным способом</p>
+        </div>
+        <div class="contact-container">
+          <div class="contact-info">
+            <h3>Наши контактные данные</h3>
+            <div class="contact-details">
+              <p>
+                <i class="fas fa-map-marker-alt"></i>
+                <strong>Адрес:</strong> 356055 Ставропольский край, Красногвардейский муниципальный округ, с. Ладовская Балка, ул. Котовского, зд. 2А
+              </p>
+              <p>
+                <i class="fas fa-phone-alt"></i>
+                <strong>Телефон:</strong> 8(86541) 4-74-53
+              </p>
+              <p>
+                <i class="fas fa-envelope"></i>
+                <strong>Email:</strong> ladbalkadetsad5@yandex.ru
+              </p>
+              <p>
+                <i class="fas fa-clock"></i> <strong>Часы работы:</strong>
+                <br />Пн-Пт: 07:30-17:30
+                <br />Сб-Вс: выходной
+                <br />Праздничные дни: выходной
+              </p>
+            </div>
+
+            <div class="map-container" style="margin-top: 30px;">
+							<iframe
+                src="https://yandex.ru/map-widget/v1/?um=constructor%3Ab45f13c92df26c737d32246995b69d11056fd82d2fa28a8e305f7be9bf54b6f9&amp;source=constructor"
+                width="100%"
+                height="300"
+                frameborder="0"
+                style="border-radius: 8px;"
+              ></iframe>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <h3>Форма обратной связи</h3>
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="name">Ваше имя *</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Телефон</label>
+                <input type="tel" id="phone" name="phone" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label for="subject">Тема сообщения</label>
+                <select id="subject" name="subject">
+                  <option value="question">Вопрос</option>
+                  <option value="feedback">Отзыв</option>
+                  <option value="registration">Запись в кружок</option>
+                  <option value="cooperation">Сотрудничество</option>
+                  <option value="other">Другое</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Сообщение *</label>
+                <textarea id="message" name="message" required></textarea>
+              </div>
+              <div
+                class="form-group"
+                style="display: flex; align-items: center;"
+              >
+                <input
+                  type="checkbox"
+                  id="consent"
+                  name="consent"
+                  required
+                  style="width: auto; margin-right: 10px;"
+                />
+                <label for="consent" style="margin-bottom: 0;"
+                  >Я согласен на обработку персональных данных</label
+                >
+              </div>
+              <button type="submit" class="btn">Отправить сообщение</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h3>О нас</h3>
+            <p>
+              Муниципальное казенное дошкольное образовательное учреждение Красногвардейского муниципального округа с. Ладовского
+            </p>
+            <div class="footer-logo" style="margin-top: 20px;">
+              <!-- SVG солнца -->
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="10" fill="#FFC107" stroke="#FFC107" stroke-width="2"/>
+                <g fill="#FFC107">
+                  <polygon points="24,2 27,10 21,10"/>
+                  <polygon points="24,46 27,38 21,38"/>
+                  <polygon points="2,24 10,21 10,27"/>
+                  <polygon points="46,24 38,21 38,27"/>
+                  <polygon points="9,9 15,13 13,15"/>
+                  <polygon points="39,9 33,13 35,15"/>
+                  <polygon points="9,39 15,35 13,33"/>
+                  <polygon points="39,39 33,35 35,33"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <div class="footer-column">
+            <h3>Разделы</h3>
+            <ul>
+              <li><a href="#about">О нас</a></li>
+              <li><a href="#gallery">Галерея</a></li>
+              <li><a href="#feedback">Отзывы</a></li>
+              <li><a href="#contact">Контакты</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Контакты</h3>
+            <ul>
+              <li>
+                <i class="fas fa-map-marker-alt"></i> с. Ладовская Балка, ул. Котовского, зд. 2А
+              </li>
+              <li><i class="fas fa-phone-alt"></i> 8(86541) 4-74-53</li>
+              <li><i class="fas fa-envelope"></i> ladbalkadetsad5@yandex.ru</li>
+              <li>
+                <i class="fas fa-clock"></i> Пн-Пт: 07:30-17:30, Сб-Вс: выходной
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">
+            <p>
+              &copy; 2024 МКДОУ "Детский сад №5 «Аленушка»". Все права защищены.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile Navigation
+      const navToggle = document.getElementById("navToggle");
+      const closeNav = document.getElementById("closeNav");
+      const mainNav = document.getElementById("mainNav");
+      const header = document.getElementById("header");
+      const mobileNav = document.getElementById("mobileNav");
+
+      navToggle.addEventListener("click", () => {
+        mobileNav.classList.add("active");
+        document.body.style.overflow = "hidden";
+      });
+
+      closeNav.addEventListener("click", () => {
+        mobileNav.classList.remove("active");
+        document.body.style.overflow = "";
+      });
+
+      // Закрываем меню при клике на ссылку
+      document.querySelectorAll(".mobile-nav a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileNav.classList.remove("active");
+          document.body.style.overflow = "";
+        });
+      });
+
+      navToggle.addEventListener("click", () => {
+        mainNav.classList.add("active");
+      });
+
+      closeNav.addEventListener("click", () => {
+        mainNav.classList.remove("active");
+      });
+
+      // Header scroll effect
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 100) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            // Закрываем мобильное меню если оно открыто
+            mobileNav.classList.remove("active");
+            document.body.style.overflow = "";
+
+            // Получаем высоту хедера
+            const headerHeight = document.getElementById("header").offsetHeight;
+            
+            // Вычисляем позицию для прокрутки с учетом высоты хедера
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+            // Плавная прокрутка к элементу
+            window.scrollTo({
+              top: targetPosition,
+              behavior: "smooth"
+            });
+          }
+        });
+      });
+
+      // Slider functionality
+      const sliderTrack = document.getElementById("sliderTrack");
+      const slides = document.querySelectorAll(".slide");
+      const dots = document.querySelectorAll(".slider-dot");
+      const prevBtn = document.getElementById("sliderPrev");
+      const nextBtn = document.getElementById("sliderNext");
+
+      // Проверяем, существует ли слайдер на странице
+      if (sliderTrack && slides.length > 0) {
+        let currentSlide = 0;
+        const slideCount = slides.length;
+
+        function goToSlide(index) {
+          if (index >= slideCount) index = 0;
+          if (index < 0) index = slideCount - 1;
+
+          sliderTrack.style.transform = `translateX(-${index * 100}%)`;
+          dots.forEach((dot) => dot.classList.remove("active"));
+          dots[index].classList.add("active");
+          currentSlide = index;
+        }
+
+        // Initialize slider
+        goToSlide(0);
+
+        // Event listeners for dots
+        dots.forEach((dot, index) => {
+          dot.addEventListener("click", () => goToSlide(index));
+        });
+
+        // Event listeners for arrows
+        if (prevBtn) prevBtn.addEventListener("click", () => goToSlide(currentSlide - 1));
+        if (nextBtn) nextBtn.addEventListener("click", () => goToSlide(currentSlide + 1));
+
+        // Auto slide change
+        let slideInterval = setInterval(() => {
+          goToSlide(currentSlide + 1);
+        }, 5000);
+
+        // Pause auto slide on hover
+        const slider = document.querySelector(".slider");
+        if (slider) {
+          slider.addEventListener("mouseenter", () => {
+            clearInterval(slideInterval);
+          });
+
+          slider.addEventListener("mouseleave", () => {
+            slideInterval = setInterval(() => {
+              goToSlide(currentSlide + 1);
+            }, 5000);
+          });
+        }
+      }
+
+      // FAQ accordion
+      const faqItems = document.querySelectorAll(".faq-item");
+
+      faqItems.forEach((item) => {
+        const question = item.querySelector(".faq-question");
+        
+        question.addEventListener("click", () => {
+          // Закрываем все остальные элементы
+          faqItems.forEach((otherItem) => {
+            if (otherItem !== item) {
+              otherItem.classList.remove("active");
+            }
+          });
+          
+          // Переключаем текущий элемент
+          item.classList.toggle("active");
+        });
+      });
+
+      // Form submission
+      const contactForm = document.getElementById("contactForm");
+
+      contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // Here you would normally send the form data to the server
+        // For this example, we'll just show an alert
+        alert(
+          "Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время."
+        );
+
+        // Reset form
+        contactForm.reset();
+      });
+
+      // Animation on scroll
+      const animateOnScroll = () => {
+        const elements = document.querySelectorAll(
+          ".section-title, .about-content, .achievement-card, .gallery-item, .event-card, .feedback-content, .contact-container"
+        );
+
+        elements.forEach((element) => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const screenPosition = window.innerHeight / 1.2;
+
+          if (elementPosition < screenPosition) {
+            element.style.opacity = "1";
+            element.style.transform = "translateY(0)";
+          }
+        });
+      };
+
+      // Set initial state for animated elements
+      document
+        .querySelectorAll(
+          ".section-title, .about-content, .achievement-card, .gallery-item, .event-card, .feedback-content, .contact-container"
+        )
+        .forEach((el) => {
+          el.style.opacity = "0";
+          el.style.transform = "translateY(30px)";
+          el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+        });
+
+      // Run once on page load
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          animateOnScroll();
+        }, 300);
+      });
+
+      // Run on scroll
+      window.addEventListener("scroll", animateOnScroll);
+
+      // Partners slider animation
+      const partnersTrack = document.querySelector(".partners-track");
+      const partnersContainer = document.querySelector(".partners-container");
+      
+      // Проверяем, существует ли секция партнеров
+      if (partnersTrack && partnersContainer) {
+        // Сохраняем оригинальный набор логотипов
+        const originalLogos = partnersTrack.innerHTML;
+        partnersTrack.innerHTML = originalLogos + originalLogos;
+
+        let scrollPos = 0;
+        const scrollSpeed = 2;
+        let isHovered = false;
+        let animationFrame;
+        let currentIndex = 0;
+
+        // Получаем точные размеры первого логотипа
+        const firstLogo = partnersTrack.firstElementChild;
+        if (firstLogo) {
+          const logoStyle = window.getComputedStyle(firstLogo);
+          const logoWidth = firstLogo.offsetWidth;
+          const logoMargin = parseInt(logoStyle.marginRight);
+          const totalLogoWidth = logoWidth + logoMargin;
+
+          // Создаем временный контейнер для хранения оригинальных логотипов
+          const tempContainer = document.createElement('div');
+          tempContainer.innerHTML = originalLogos;
+          const originalLogosArray = Array.from(tempContainer.children);
+
+          function animate() {
+            if (!isHovered) {
+              scrollPos += scrollSpeed;
+              
+              // Если первый логотип полностью вышел из видимой области
+              if (scrollPos >= totalLogoWidth) {
+                // Сохраняем текущую позицию
+                const currentPos = scrollPos;
+                
+                // Удаляем первый логотип
+                const firstLogo = partnersTrack.firstElementChild;
+                if (firstLogo) {
+                  firstLogo.remove();
+                  
+                  // Добавляем следующий логотип из оригинального набора
+                  const nextLogo = originalLogosArray[currentIndex].cloneNode(true);
+                  partnersTrack.appendChild(nextLogo);
+                  
+                  // Обновляем индекс для следующего логотипа
+                  currentIndex = (currentIndex + 1) % originalLogosArray.length;
+                  
+                  // Корректируем позицию скролла
+                  scrollPos = currentPos - totalLogoWidth;
+                }
+              }
+              
+              partnersTrack.style.transform = `translateX(-${scrollPos}px)`;
+            }
+            animationFrame = requestAnimationFrame(animate);
+          }
+
+          // Запускаем анимацию
+          animate();
+
+          // Останавливаем при наведении
+          partnersContainer.addEventListener('mouseenter', () => {
+            isHovered = true;
+          });
+
+          // Возобновляем при уходе мыши
+          partnersContainer.addEventListener('mouseleave', () => {
+            isHovered = false;
+          });
+
+          // Добавляем обработчик для очистки анимации при уходе со страницы
+          window.addEventListener('beforeunload', () => {
+            cancelAnimationFrame(animationFrame);
+          });
+        }
+      }
+    </script>
+  </body>
+</html>
